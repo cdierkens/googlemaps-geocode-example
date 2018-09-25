@@ -1,0 +1,38 @@
+{
+  "name": "googlemaps-geocode-example",
+  "version": "1.0.0",
+  "description": "\"Example usage of the google maps geocode node api.\"",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdierkens/googlemaps-geocode-example.git"
+  },
+  "keywords": [
+    "googlemaps",
+    "geocode"
+  ],
+  "author": "Christopher Dierkens <cjdierkens@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cdierkens/googlemaps-geocode-example/issues"
+  },
+  "homepage": "https://github.com/cdierkens/googlemaps-geocode-example#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.4",
+    "@fortawesome/free-solid-svg-icons": "^5.3.1",
+    "@fortawesome/react-fontawesome": "^0.1.3",
+    "@google/maps": "^0.5.5",
+    "csv-parse": "^3.0.0",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "google-map-react": "^1.0.8",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^7.0.0",
+    "node-cache": "^4.2.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "stream-transform": "^1.0.2"
+  }
+}
