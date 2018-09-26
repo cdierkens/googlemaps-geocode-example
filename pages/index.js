@@ -1,24 +1,68 @@
 import React from 'react'
 import fetch from 'isomorphic-unfetch'
-import Map from '../components/map';
+import Map from '../components/Map';
+import AddressList from '../components/AddressList'
+import Form from '../components/Form'
 
-const Index = (props) => {
-    let markers = Object.keys(props.data.addresses).filter((key) => {
-        let address = props.data.addresses[key]
-        return address && address.geometry && address.geometry.location_type === 'ROOFTOP'
-    }).reduce((result, key) => result.concat(props.data.addresses[key]), [])
+class Index extends React.Component {
+    state = {
+        checked: "map",
+        filter: "",
+        addresses: this.props.data.addresses
+    }
 
-    return (<main>
+    handleToggleChange = (event) => {
+        this.setState({
+            checked: event.target.value
+        })
+    }
+
+    handlerFilterChange = (event) => {
+        this.setState({
+            filter: event.target.value
+        })
+    }
+
+    filteredAddresses = () => {
+        if (!this.state.filter) {
+            return this.state.addresses
+        }
+
+        return this.state.addresses.filter( address => address.formatted_address.indexOf(this.state.filter) > -1 )
+    }
+
+    render = () => (<main>
         <section>
-            <h1>Hello</h1>
-            <Map markers={markers} />
-            <pre>{JSON.stringify(props.data.addresses, null, 4)}</pre>
+            <h1>Rooftop Addresses</h1>
+            <Form 
+                checked={this.state.checked}
+                onToggle={this.handleToggleChange}
+                filter={this.state.filter}
+                onFilter={this.handlerFilterChange}
+            />
+            {
+                (this.state.checked === "map") ? 
+                <Map markers={this.filteredAddresses()} /> :
+                <AddressList addresses={this.filteredAddresses()} />
+            }
+            <style jsx global>{`
+                body { 
+                    font-family: "Open Sans", Arial,"Helvetica Neue",Helvetica,sans-serif;
+                    font-size: 16px;
+                    color: #444
+                }
+
+                h1 {
+                    border-bottom: 1px solid #ccc;
+                    font-weight: normal;
+                }
+            `}</style>
         </section>
     </main>)
 }
 
 Index.getInitialProps = async function({ req }) {
-    const res = await fetch(`http://${req.headers.host}/api`)
+    const res = await fetch(`http://${req.headers.host}/api?geometry.location_type=ROOFTOP`)
     const data = await res.json()
     
     return { data }
