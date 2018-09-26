@@ -12,6 +12,8 @@ Rename `example.env` to `.env` and fill in the `GOOGLE_MAPS_API_KEY` variable.
 
 The first run may take a bit of time, as a `json` database of geocoded addresses will be built and stored.
 
+You will run into quota issues if you are running with a developer api key.
+
 ### Open
 
 `$ open http://localhost:3000/`
@@ -19,4 +21,3 @@ The first run may take a bit of time, as a `json` database of geocoded addresses
 You can toggle between a list view and a map view at the top or filter the displayed addresss.
 
 The map will center on the first result in the list.
-
