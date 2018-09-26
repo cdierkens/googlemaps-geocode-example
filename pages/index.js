@@ -23,12 +23,17 @@ class Index extends React.Component {
         })
     }
 
+    addressFilter = address => (address.formatted_address
+        .toLowerCase()
+        .indexOf(this.state.filter.toLowerCase()) > -1)
+    
+
     filteredAddresses = () => {
         if (!this.state.filter) {
             return this.state.addresses
         }
 
-        return this.state.addresses.filter( address => address.formatted_address.indexOf(this.state.filter) > -1 )
+        return this.state.addresses.filter(this.addressFilter)
     }
 
     render = () => (<main>
