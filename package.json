@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "\"Example usage of the google maps geocode node api.\"",
   "scripts": {
+    "build": "next build",
+    "deploy": "now",
     "start": "node index.js"
   },
   "repository": {

@@ -1,0 +1,11 @@
+*
+!.env
+!addresses.csv
+!components
+!db.json
+!index.js
+!next.config.js
+!package-lock.json
+!package.json
+!pages
+!src
